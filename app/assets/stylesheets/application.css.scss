@@ -1,0 +1,92 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require jquery-ui/datepicker
+ *= require_tree .
+ *= require social-share-button
+ *= require chosen
+ *= require_self
+ */
+
+@import 'colors';
+@import 'layout';
+@import 'fonts';
+@import 'buttons';
+@import 'responsive';
+
+body {
+  font-family: $sans;
+
+  a {
+    color: $sky-blue;
+
+    &:hover {
+      color: $sky-blue-hover;
+    }
+  }
+
+  .mycontent {
+  	margin-left: 40px;
+  }
+
+  .projImage {
+  	margin-left: 0
+  }
+
+  .tasks {
+    border-left: 20 px solid #696969
+  }
+
+  .tabs {
+  	margin_left: 0;
+  }
+
+  .columns {
+      padding-left: 1rem;
+      padding-right: 0rem;
+  }
+
+  .row {
+      margin-left: 0rem;
+      margin-right: 0rem;
+      width:auto;
+  }
+
+  .container1 {
+      opacity: 0.75;
+      border-radius: 5px;
+      border: 2px solid #a9a9a9;
+      padding: 15px 5px 5px 2px;
+      height:100%;
+      margin-top: 0;
+      margin-bottom: 20px;
+      margin-left: 40px;
+      background-color: #fff;
+  }
+
+  .marginalizing {
+    margin-left: 240px;
+  }
+
+  .taskarea {
+    border-left: 2px dashed #a9a9a9;
+  }
+
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .gravatar_edit {
+    margin-top: 15px;
+  }
+}

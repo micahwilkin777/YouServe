@@ -1,0 +1,125 @@
+<br><div class="row">
+<div class="small-6 columns">
+
+<div class="row">
+    <div class="small-4 columns">
+  <% if @user.picture? %>
+	<%= image_tag(@user.picture.url, size: "100x100") %>
+	    <% else %>
+        <%= gravatar_for @user %>
+        <%end%>
+    </div>
+    <div class="small-8 columns">
+	<p><h3 class="subheader"><%= @user.name if @user.name %></h3></p>
+	<p>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @user.email if @user.email %></p>
+
+	<p>Status:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% if @user.admin? %>Admin 
+		<% elsif @user.manager? %>&nbsp;Project Admin
+		<%else%>
+         User
+
+		 <%end%>
+		 <p>Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=number_to_phone(@user.phone_number, area_code: true) %></p>
+		
+		 
+         
+        <p>City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=@user.city %></p>
+		 <p>Country:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=@user.country%></p><br>
+
+         
+		 </div>
+		</div>
+
+        </div>
+
+
+
+
+<div class="small-6 columns">
+	<br>
+<%= link_to "Edit my Profile Information", edit_user_registration_path(current_user), class: "button radius" if user_signed_in? && current_user == @user %>
+		 
+   
+<h5 class="subheader">
+<u>Intro:</u>  </h5> 
+        <p><%= @user.description %></p>
+     
+
+
+         <p>Links:    <br>
+		 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u><%= link_to "My LinkedIn", @user.first_link   %></u><br>
+		 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u><%= link_to "My Website", @user.second_link %></u><br>
+		 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u><%= link_to "My Institution", @user.third_link %></u><br>
+		 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u><%= link_to "My Facebook", @user.fourth_link %></u><br>
+
+
+
+		 </p>
+		
+
+
+
+</div>
+
+   
+</div>
+</div>
+
+
+<div class= "marginalizing">
+<h4 class="subheader"><u> Projects I am involved in:</u> </h4>
+
+
+<% @projects.each do |project| %>
+
+   <%if project.user == @user %>
+   <div class="vcard">
+   <% if project.picture? %>
+  	<%= image_tag(project.picture.url, size: "30x30") %>
+
+    <%else%>
+
+    <%= gravatar_for_pro(project) %>
+  	<%end%>
+     <br>
+     <%= link_to project.title, project %><br>
+
+     Status: Project Admin
+
+
+
+    </div>
+
+<%end%>
+
+<%end%>
+
+
+
+<% @assignments.each do |assignment| %>
+<% if assignment.user == @user && assignment.task.project.user != @user %>
+  
+       <div class="vcard">
+   <% if assignment.task.project.picture? %>
+  	<%= image_tag(assignment.task.project.picture.url, size: "30x30") %>
+
+    <%else%>
+
+    <%= gravatar_for_pro(assignment.task.project) %>
+  	<%end%>
+     <br>
+     <%= link_to assignment.task.project.title, assignment.task.project %><br>
+
+     Status: Freelancer
+
+
+
+    </div>
+
+<%end%>
+
+
+
+<%end%> 
+</div>
+
